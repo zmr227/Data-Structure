@@ -17,7 +17,8 @@ public class Main {
 //            System.out.println(score);
 //        }
 
-        MyArray<Integer> my_arr = new MyArray<>(8);
+        MyArray<Integer> my_arr = new MyArray<>(3);
+
         for(int i = 0; i < 5; i++){
             my_arr.addLast(i);
         }
@@ -27,14 +28,17 @@ public class Main {
 
         System.out.println(my_arr);
 
-        my_arr.removeFirst();
+        for(int i = 0; i < 4; i++){
+            my_arr.removeFirst();
+        }
+
         System.out.println(my_arr);
 
-        MyArray<Student> students = new MyArray<>(10);
-        students.addLast(new Student("Alice", 98));
-        students.addLast(new Student("Bob", 77));
-        students.addLast(new Student("Charlie", 85));
-
-        System.out.println(students);
+//        MyArray<Student> students = new MyArray<>(10);
+//        students.addLast(new Student("Alice", 98));
+//        students.addLast(new Student("Bob", 77));
+//        students.addLast(new Student("Charlie", 85));
+//
+//        System.out.println(students);
     }
 }

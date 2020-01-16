@@ -61,6 +61,14 @@ public class MyArray<T> {
 
     // Encapsulation, prevent user from accessing empty slot/whole data array
     // get/set elem by index，O(1)
+    public T getFirst(){
+        return get(0);
+    }
+
+    public T getLast(){
+        return get(size - 1);
+    }
+
     public T get(int idx){
         if(idx < 0 || idx >= size){
             throw new IllegalArgumentException("Get failed, invalid index");
