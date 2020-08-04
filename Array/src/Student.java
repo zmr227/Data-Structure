@@ -12,5 +12,14 @@ public class Student {
     public String toString() {
         return String.format("Student(name: %s, score: %d)", name, score);
     }
+
+    public static void main(String[] args) {
+        Array<Student> arr = new Array<>();
+        arr.addLast(new Student("Alice", 98));
+        arr.addLast(new Student("Bob", 88));
+        arr.addLast(new Student("Charlie", 72));
+
+        System.out.println(arr);
+    }
 }
 

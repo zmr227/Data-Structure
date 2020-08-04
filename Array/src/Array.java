@@ -1,14 +1,14 @@
-public class MyArray<T> {
+public class Array<T> {
     private T[] data;
     private int size; // point to the next position
 
     // constructor with/without param (capacity)
-    public MyArray(int capacity){
+    public Array(int capacity){
         data = (T[]) new Object[capacity];
         size = 0;
     }
 
-    public MyArray(){
+    public Array(){
         data = (T[]) new Object[10];
         size = 0;
     }
@@ -75,6 +75,13 @@ public class MyArray<T> {
         data[idx] = elem;
     }
 
+    public T getFirst() {
+        return get(0);
+    }
+
+    public T getLast() {
+        return get(size - 1);
+    }
     // check if arr contains particular element, O(n)
     public boolean contains(T elem){
         for(int i = 0; i < size; i++){
@@ -159,4 +166,6 @@ public class MyArray<T> {
         }
         data = new_data;
     }
+
+
 }

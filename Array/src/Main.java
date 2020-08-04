@@ -1,44 +1,34 @@
+import java.util.Random;
+
 public class Main {
 
     public static void main(String[] args) {
-//	    // allocate space with "new" keyword, have to specify the size/capacity when create an array
-//        int[] arr = new int[10];
-//        for(int i = 0; i < arr.length; i++){
-//            arr[i] = i;
-//        }
-//
-//        int[] scores = {100, 98, 73};
-//        for(int i = 0; i < scores.length; i++){
-//            System.out.println(scores[i]);
-//        }
-//
-//        scores[0] = 94;
-//        for(int score : scores){
-//            System.out.println(score);
-//        }
+        int opCount = 100000;
 
-        MyArray<Integer> my_arr = new MyArray<>(3);
+        // dequeue() is O(1)
+        LoopQueue<Integer> loopQueue = new LoopQueue<>();
+        double time1 = testQueue(loopQueue, opCount);
+        System.out.println("Loop Queue Time " + time1 + "s");
 
-        for(int i = 0; i < 5; i++){
-            my_arr.addLast(i);
+        // dequeue() is O(n)
+        ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
+        double time2 = testQueue(arrayQueue, opCount);
+        System.out.println("Array Queue Time " + time2 + "s");
+    }
+
+    // 这种测试方法可能收到当前计算机状态影响，比如正在运行其他很多程序，所以更严谨的做法应该是多运行几次取平均值。
+    // java语言不同版本的编译优化方式不同，运行时间可能也有不同。
+    private static double testQueue(Queue<Integer> q, int opCount) {
+        Random random = new Random();
+        long startTime = System.nanoTime();
+
+        for (int i = 0; i < opCount; i++) {
+            q.enqueue(random.nextInt(Integer.MAX_VALUE));
         }
-
-        my_arr.insert(2, 96);
-        System.out.println(my_arr.contains(4));
-
-        System.out.println(my_arr);
-
-        for(int i = 0; i < 4; i++){
-            my_arr.removeFirst();
+        for (int i = 0; i < opCount; i++) {
+            q.dequeue();
         }
-
-        System.out.println(my_arr);
-
-//        MyArray<Student> students = new MyArray<>(10);
-//        students.addLast(new Student("Alice", 98));
-//        students.addLast(new Student("Bob", 77));
-//        students.addLast(new Student("Charlie", 85));
-//
-//        System.out.println(students);
+        long endTime = System.nanoTime();
+        return (endTime - startTime) / 1000000000.0;
     }
 }
