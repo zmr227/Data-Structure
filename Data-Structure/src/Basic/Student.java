@@ -1,3 +1,5 @@
+package Basic;
+
 public class Student {
 
     private String name;

@@ -1,3 +1,5 @@
+package Basic;
+
 public class Array<T> {
     private T[] data;
     private int size; // point to the next position

@@ -1,3 +1,5 @@
+package Basic;
+
 public interface Queue<E> {
     int getSize();
     boolean isEmpty();

@@ -1,18 +1,18 @@
-public class ArrayStack<E> implements Stack<E> {
+package Basic;
+
+public class ArrayQueue<E> implements Queue<E> {
     Array<E> array;
 
-    public ArrayStack() {
+    public ArrayQueue() {
         array = new Array<>();
     }
 
-    public ArrayStack(int capacity) {
+    public ArrayQueue(int capacity) {
         array = new Array<>(capacity);
     }
 
     // O(1)
-    public int getCapacity() {
-        return array.getCapacity();
-    }
+    public int getCapacity() { return array.getCapacity(); }
 
     // O(1)
     @Override
@@ -26,45 +26,43 @@ public class ArrayStack<E> implements Stack<E> {
         return array.isEmpty();
     }
 
-    // O(1)
+    // O(1) 均摊
     @Override
-    public void push(E e) {
+    public void enqueue(E e) {
         array.addLast(e);
     }
 
-    // O(1)
+    // O(n)
     @Override
-    public E pop() {
-        return array.removeLast();
-    }
+    public E dequeue() { return array.removeFirst(); }
 
     // O(1)
     @Override
-    public E peek() {
-        return array.getLast();
-    }
+    public E getFront() { return array.getFirst(); }
 
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
-        res.append("Stack: [");
+        res.append("Queue: front [");
         for (int i = 0; i < array.getSize(); i++) {
             res.append(array.get(i));
             if (i != array.getSize() - 1) {
                 res.append(", ");
             }
         }
-        res.append("] top"); // top of stack
+        res.append("]");
         return res.toString();
     }
 
     public static void main(String[] args) {
-        ArrayStack<Integer> stack = new ArrayStack<>(3);
+        ArrayQueue<Integer> queue = new ArrayQueue<>(3);
         for (int i = 0; i < 5; i++) {
-            stack.push(i);
-            System.out.println(stack);
+            queue.enqueue(i);
+            System.out.println(queue);
+            if (i % 3 == 1){  // i = 1 || i = 4
+                queue.dequeue();
+                System.out.println("pop "+ queue);
+            }
         }
-        stack.pop();
-        System.out.println(stack);
     }
 }
