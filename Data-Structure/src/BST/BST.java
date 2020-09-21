@@ -332,7 +332,7 @@ public class BST<E extends Comparable<E>> {
         size --;
         return cur.val;
     }
-    
+
     public E removeMax() {
         E maxVal = getMax();
         root = removeMaxNode(root);
@@ -347,6 +347,44 @@ public class BST<E extends Comparable<E>> {
             return leftChild;
         }
         root.right = removeMaxNode(root.right);
+        return root;
+    }
+
+    public void remove(E val) {
+        root = remove(root, val);
+    }
+
+    private Node remove(Node root, E val) {
+        // did not find the node
+        if (root == null) {
+            return null;
+        }
+        if (root.val == val) {
+            // only have left/right child
+            if (root.left == null) {
+                Node rightNode = root.right;
+                root.right = null;
+                size --;
+                return rightNode;
+            }
+            if (root.right == null) {
+                Node leftNode = root.left;
+                root.left = null;
+                size --;
+                return leftNode;
+            }
+            // use the min of right subtree/max of left subtree as new root
+            Node successor = getMinNode(root.right);
+            successor.left = root.left;
+            root.left = root.right = null;
+            return successor;
+        }
+        else if (val.compareTo(root.val) < 0) {
+            root.left = remove(root.left, val);
+        }
+        else {
+            root.right = remove(root.right, val);
+        }
         return root;
     }
 
@@ -375,3 +413,4 @@ public class BST<E extends Comparable<E>> {
         return res.toString();
     }
 }
+

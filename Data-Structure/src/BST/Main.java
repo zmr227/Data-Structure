@@ -5,26 +5,32 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
+        testRemoveNode();
+    }
+
+    public static void testTraversal() {
         BST<Integer> bst = new BST<Integer>();
-//        int[] nums = {5,3,6,8,4,2};
-//        for (int num : nums) {
-//            bst.addNode(num);
-//        }
-        // Treversal
-//        bst.preOrder(); // recursive
-//        System.out.println();
-//        bst.preOrderNR(); // non-recursive
+        int[] nums = {5,3,6,8,4,2};
+        for (int num : nums) {
+            bst.add(num);
+        }
 
-//        bst.inOrder(); // sorted nums
-//        System.out.println();
-//        bst.inOrderNR(); // non-recursive
+        bst.preOrder(); // recursive
+        System.out.println();
+        bst.preOrderNR(); // non-recursive
 
-//        bst.postOrder();
-//        System.out.println();
-//        bst.postOrderNR();
-//        System.out.println(bst.levelOrderTraverse());
+        bst.inOrder(); // sorted nums
+        System.out.println();
+        bst.inOrderNR(); // non-recursive
 
-        // Remove min/max node
+        bst.postOrder();
+        System.out.println();
+        bst.postOrderNR();
+        System.out.println(bst.levelOrderTraverse());
+    }
+
+    public static void testRemoveMinMaxNode() {
+        BST<Integer> bst = new BST<Integer>();
         Random random = new Random();
         int n = 100;
         for (int i = 0; i < n; i ++) {
@@ -42,5 +48,20 @@ public class Main {
             }
         }
         System.out.println("removeMax() test completed");
+    }
+
+    public static void testRemoveNode() {
+        BST<Integer> bst = new BST<Integer>();
+        int[] nums = {5,3,6,8,4,2};
+        for (int num : nums) {
+            bst.add(num);
+        }
+        System.out.println(bst);
+        bst.remove(3);
+        System.out.println("After remove: \n" + bst);
+    }
+
+    public void testBSTSet() {
+
     }
 }
